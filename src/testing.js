@@ -1,4 +1,4 @@
-module.exports = function check(str, bracketsConfig) {
+function check(str, bracketsConfig) {
   const checkList = [];
   const openArr = [];
   const closeArr = [];
@@ -31,3 +31,14 @@ module.exports = function check(str, bracketsConfig) {
   }
   return checkList.length === 0;
 }
+console.log(check('()', [['(', ')']]));  // -> true
+console.log(check('((()))()', [['(', ')']]));  // -> true
+console.log(check('())(', [['(', ')']]));  // -> false
+console.log(check('([{}])', [['(', ')'], ['[', ']'], ['{', '}']]));  // -> true
+console.log(check('[(])', [['(', ')'], ['[', ']']]));  // -> false
+console.log(check('[]()', [['(', ')'], ['[', ']']]));  // -> true
+console.log(check('[]()(', [['(', ')'], ['[', ']']]));  // -> false
+console.log(check('||', [['|', '|']]));  // -> true
+console.log(check('|()|', [['(', ')'], ['|', '|']]));  // -> true
+console.log(check('|(|)', [['(', ')'], ['|', '|']]));  // -> false
+console.log(check('|()|(||)||', [['(', ')'], ['|', '|']]));  // -> true
